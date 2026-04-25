@@ -1,367 +1,226 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KhoTrí AI – Kho tài liệu thông minh</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --mint: #A5F3E0;
-    --mint-dark: #6EDEC6;
-    --mint-light: #D4FAF2;
-    --purple: #C7B4FF;
-    --purple-dark: #9B82F5;
-    --purple-light: #EDE8FF;
-    --soul-purple: #D8B4FE;
-    --soul-pink: #F9C7E8;
-    --white: #FFFFFF;
-    --bg: #F7FDFB;
-    --text: #1A2E28;
-    --text-muted: #5A7A72;
-    --card-bg: rgba(255,255,255,0.85);
-    --border: rgba(165,243,224,0.4);
-    --shadow: 0 8px 32px rgba(107,178,157,0.12);
-    --shadow-hover: 0 16px 48px rgba(107,178,157,0.22);
-    --radius: 20px;
-    --radius-sm: 12px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KhoTrí AI – Kho tài liệu thông minh</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 
-  body {
-    font-family: 'Quicksand', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+    :root {
+      --mint: #A5F3E0;
+      --mint-dark: #6EDEC6;
+      --purple: #C7B4FF;
+      --purple-dark: #9B82F5;
+    }
 
-  /* Background mesh */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(165,243,224,0.35) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 60% at 90% 80%, rgba(199,180,255,0.25) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 50% 10%, rgba(165,243,224,0.15) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+    body {
+      font-family: 'Quicksand', system-ui, sans-serif;
+    }
 
-  /* Views */
-  .view { display: none; }
-  .view.active { display: flex; flex-direction: row; min-height: 100vh; }
+    .logo-font {
+      font-family: 'DM Serif Display', serif;
+    }
 
-  /* SIDEBAR */
-  .sidebar {
-    width: 260px;
-    min-width: 260px;
-    background: rgba(255,255,255,0.95);
-    border-right: 1px solid var(--border);
-    backdrop-filter: blur(16px);
-    padding: 24px 16px;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 10;
-  }
+    .chat-bubble-ai {
+      background-color: #f3e8ff;
+      border-color: #c4b5fd;
+    }
 
-  .sidebar-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    padding: 8px 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 16px;
-  }
-  .logo-icon {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, var(--mint), var(--purple));
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    color: white;
-  }
-
-  .sidebar-btn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    border-radius: var(--radius-sm);
-    border: none;
-    background: transparent;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: left;
-    width: 100%;
-  }
-  .sidebar-btn:hover { background: var(--mint-light); color: var(--text); }
-  .sidebar-btn.active { 
-    background: linear-gradient(135deg, var(--mint-light), var(--purple-light)); 
-    color: var(--text); 
-    font-weight: 700; 
-  }
-  .sidebar-btn .s-icon { font-size: 18px; width: 24px; text-align: center; }
-
-  .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
-  .sidebar-spacer { flex: 1; }
-
-  .sidebar-user {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    background: var(--bg);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-  }
-  .user-avatar {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--mint), var(--purple));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; color: white;
-  }
-
-  /* MAIN CONTENT */
-  .main-content {
-    flex: 1;
-    padding: 32px;
-    overflow-y: auto;
-    background: transparent;
-  }
-
-  /* Các style khác giữ nguyên từ code cũ của bạn */
-  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-  .page-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; }
-
-  /* Chat styles */
-  .chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 100px); }
-  .chat-messages { flex: 1; overflow-y: auto; padding: 16px 0; display: flex; flex-direction: column; gap: 16px; }
-  .msg { display: flex; gap: 12px; max-width: 75%; }
-  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
-  .msg-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .ai-avatar { background: linear-gradient(135deg, var(--mint), var(--purple)); color: white; }
-  .souly-avatar { background: linear-gradient(135deg, var(--soul-purple), var(--soul-pink)); color: white; box-shadow: 0 0 0 3px rgba(216,180,254,0.3); }
-  .msg-bubble { background: white; border-radius: 18px 18px 18px 4px; padding: 14px 18px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); font-size: 14.5px; line-height: 1.65; }
-  .msg.user .msg-bubble { background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark)); color: white; border: none; border-radius: 18px 18px 4px 18px; }
-  .souly-bubble { border: 2px solid var(--soul-purple); }
-
-  .chat-input-row {
-    display: flex; gap: 12px; align-items: flex-end;
-    background: white; border-radius: var(--radius); padding: 14px 16px;
-    border: 1.5px solid var(--border); box-shadow: var(--shadow);
-  }
-  .chat-input {
-    flex: 1; border: none; outline: none; font-size: 15px; resize: none; min-height: 24px;
-  }
-  .chat-send {
-    width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    border: none; color: white; font-size: 18px; cursor: pointer;
-  }
-
-  .prompt-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 0; }
-  .prompt-chip {
-    padding: 8px 14px; border-radius: 50px; border: 1.5px solid var(--border);
-    background: white; font-size: 13px; font-weight: 600; color: var(--text-muted);
-    cursor: pointer; transition: all 0.2s;
-  }
-  .prompt-chip:hover { background: var(--mint-light); border-color: var(--mint-dark); color: var(--text); }
-
-  /* Toast */
-  #toast {
-    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
-    background: var(--text); color: white; padding: 12px 24px; border-radius: 50px;
-    font-weight: 700; font-size: 14px; z-index: 999; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    opacity: 0; transition: opacity 0.3s;
-  }
-</style>
+    .chat-bubble-souly {
+      background-color: #fdf4ff;
+      border: 2px solid #d8b4fe;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-[#F7FDFB] min-h-screen">
 
-<div id="dashboard" class="view active">
+<div class="flex h-screen">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon">📚</div>
-      <span>KhoTrí AI</span>
-    </div>
-
-    <button class="sidebar-btn active" id="btn-upload" onclick="switchTab('upload')">
-      <span class="s-icon">🏠</span> <span>Kho của tôi</span>
-    </button>
-    <button class="sidebar-btn" id="btn-repo" onclick="switchTab('repo')">
-      <span class="s-icon">📁</span> <span>Tài liệu</span>
-    </button>
-    <button class="sidebar-btn" id="btn-chat" onclick="switchTab('chat')">
-      <span class="s-icon">💬</span> <span>Chat Kho Trí (Humai)</span>
-    </button>
-    <button class="sidebar-btn" id="btn-souly" onclick="switchTab('souly')">
-      <span class="s-icon">🌸</span> <span>Chat với Souly</span>
-    </button>
-    <button class="sidebar-btn" id="btn-notebook" onclick="switchTab('notebook')">
-      <span class="s-icon">🧠</span> <span>NotebookLM</span>
-    </button>
-
-    <div class="sidebar-divider"></div>
-
-    <button class="sidebar-btn" onclick="alert('Cài đặt bảo mật & xóa dữ liệu')">
-      <span class="s-icon">⚙️</span> <span>Cài đặt</span>
-    </button>
-
-    <div class="sidebar-spacer"></div>
-
-    <div class="sidebar-user">
-      <div class="user-avatar">M</div>
-      <div class="user-info">
-        <div class="user-name">Minh Anh</div>
-        <div class="user-plan">Gói miễn phí</div>
+  <div class="w-72 bg-white border-r border-base-200 flex flex-col shadow-sm">
+    <div class="p-6 border-b border-base-200">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-[#A5F3E0] to-[#C7B4FF] rounded-2xl flex items-center justify-center text-2xl">
+          📚
+        </div>
+        <div>
+          <span class="logo-font text-2xl font-bold text-gray-800">KhoTrí AI</span>
+        </div>
       </div>
     </div>
-  </aside>
+
+    <div class="flex-1 p-4 space-y-1 overflow-y-auto">
+      <button onclick="switchTab('upload')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl active" id="btn-upload">
+        <span class="text-xl">🏠</span>
+        <span class="font-medium">Kho của tôi</span>
+      </button>
+      <button onclick="switchTab('repo')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-repo">
+        <span class="text-xl">📁</span>
+        <span class="font-medium">Tài liệu</span>
+      </button>
+      <button onclick="switchTab('chat')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-chat">
+        <span class="text-xl">💬</span>
+        <span class="font-medium">Chat Kho Trí (Humai)</span>
+      </button>
+      <button onclick="switchTab('souly')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-souly">
+        <span class="text-xl">🌸</span>
+        <span class="font-medium">Chat với Souly</span>
+      </button>
+      <button onclick="switchTab('notebook')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-notebook">
+        <span class="text-xl">🧠</span>
+        <span class="font-medium">NotebookLM</span>
+      </button>
+    </div>
+
+    <div class="p-4 border-t border-base-200">
+      <div class="flex items-center gap-3 p-3 bg-base-100 rounded-2xl">
+        <div class="w-9 h-9 bg-gradient-to-br from-[#A5F3E0] to-[#C7B4FF] rounded-full flex items-center justify-center text-white font-bold">M</div>
+        <div>
+          <div class="font-semibold text-sm">Minh Anh</div>
+          <div class="text-xs text-gray-500">Gói miễn phí</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- MAIN CONTENT -->
-  <main class="main-content">
+  <div class="flex-1 flex flex-col overflow-hidden">
 
-    <!-- TAB: Kho của tôi -->
-    <div id="tab-upload">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Kho Trí của tôi</div>
-          <div class="page-sub">Xin chào Minh Anh 👋 — Hiện có 6 tài liệu</div>
-        </div>
+    <!-- Top Bar -->
+    <div class="h-14 border-b border-base-200 bg-white px-6 flex items-center justify-between">
+      <div class="text-lg font-medium" id="current-page">Kho của tôi</div>
+      <div class="flex gap-2">
+        <button class="btn btn-sm btn-ghost">Hỗ trợ</button>
+        <button class="btn btn-sm btn-primary">Nâng cấp</button>
       </div>
-      <p style="text-align:center; margin-top:100px; color:#666; font-size:18px;">
-        Giao diện đã được sửa thành công!<br><br>
-        Hãy click vào các nút bên trái để chuyển tab.
-      </p>
     </div>
 
-    <!-- TAB: Tài liệu -->
-    <div id="tab-repo" style="display:none">
-      <div class="page-title">Kho tài liệu</div>
-      <p style="color:#666; margin-top:20px;">Danh sách tài liệu sẽ hiển thị ở đây (đang phát triển)</p>
-    </div>
+    <!-- Content Area -->
+    <div class="flex-1 p-8 overflow-y-auto" id="main-content">
 
-    <!-- TAB: Chat Humai -->
-    <div id="tab-chat" style="display:none">
-      <div class="page-header">
-        <div class="page-title">Chat với Kho Trí (Humai)</div>
-      </div>
-      <div class="chat-wrap">
-        <div class="chat-messages" id="chatMessages">
-          <div class="msg">
-            <div class="msg-avatar ai-avatar">K</div>
-            <div class="msg-bubble">
-              Xin chào! Tôi là trợ lý logic của bạn.<br>
-              Bạn có thể hỏi bất cứ điều gì về tài liệu trong kho.
+      <!-- TAB: Kho của tôi -->
+      <div id="tab-upload" class="tab-content">
+        <h1 class="text-3xl font-bold mb-2">Chào mừng trở lại, Minh Anh 👋</h1>
+        <p class="text-gray-600 mb-8">Kho Trí của bạn đang có <span class="font-semibold text-[#6EDEC6]">6 tài liệu</span></p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card bg-white shadow-sm border border-base-200 hover:shadow-md transition-all">
+            <div class="card-body">
+              <p class="text-4xl">📄</p>
+              <h3 class="font-semibold mt-4">Luận văn tốt nghiệp</h3>
+              <p class="text-sm text-gray-500">22/04/2025 • 4.2 MB</p>
             </div>
           </div>
         </div>
-        <div class="prompt-chips">
-          <button class="prompt-chip" onclick="sendPromptChip(this)">Tóm tắt tài liệu mới nhất</button>
-          <button class="prompt-chip" onclick="sendPromptChip(this)">Rút ra insight quan trọng</button>
-        </div>
-        <div class="chat-input-row">
-          <textarea class="chat-input" id="chatInput" placeholder="Hỏi về tài liệu của bạn..." rows="1"></textarea>
-          <button class="chat-send" onclick="sendChat()">➤</button>
-        </div>
       </div>
-    </div>
 
-    <!-- TAB: Chat Souly -->
-    <div id="tab-souly" style="display:none">
-      <div class="page-header">
-        <div class="page-title">🌸 Chat với Souly</div>
-        <div style="color:#9B82F5; font-weight:600;">Người bạn đồng hành cảm xúc</div>
-      </div>
-      <div class="chat-wrap">
-        <div class="chat-messages" id="soulyMessages">
-          <div class="msg">
-            <div class="msg-avatar souly-avatar">🌸</div>
-            <div class="msg-bubble souly-bubble">
-              Chào bạn ❤️<br><br>
-              Mình là Souly. Hôm nay bạn muốn chia sẻ cảm xúc gì?<br>
-              Mình ở đây để lắng nghe và cùng bạn khám phá.
+      <!-- TAB: Chat Humai -->
+      <div id="tab-chat" class="tab-content hidden">
+        <h1 class="text-3xl font-bold mb-6">Chat với Kho Trí (Humai)</h1>
+        <div class="chat-container bg-white rounded-3xl shadow-sm border border-base-200 h-[calc(100vh-180px)] flex flex-col">
+          <div class="flex-1 p-6 overflow-y-auto" id="chatMessages">
+            <!-- Messages sẽ được thêm bằng JS -->
+          </div>
+          <div class="p-4 border-t">
+            <div class="flex gap-2">
+              <input type="text" id="chatInput" placeholder="Hỏi bất cứ điều gì về tài liệu của bạn..." 
+                     class="input input-bordered flex-1 rounded-2xl" onkeypress="if(event.key==='Enter') sendChat()">
+              <button onclick="sendChat()" class="btn btn-primary rounded-2xl">Gửi</button>
             </div>
           </div>
         </div>
-        <div class="prompt-chips">
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Hôm nay mình cảm thấy thế nào?</button>
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Giúp mình nhẹ nhàng hơn</button>
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Phân tích cảm xúc từ nhật ký</button>
-        </div>
-        <div class="chat-input-row">
-          <textarea class="chat-input" id="soulyInput" placeholder="Nói với Souly bất cứ điều gì bạn đang cảm thấy..." rows="1"></textarea>
-          <button class="chat-send" onclick="sendSoulyChat()" style="background: linear-gradient(135deg, #C4B5FD, #A78BFA)">➤</button>
+      </div>
+
+      <!-- TAB: Chat Souly -->
+      <div id="tab-souly" class="tab-content hidden">
+        <h1 class="text-3xl font-bold mb-6 flex items-center gap-3">
+          <span>🌸</span> Chat với Souly
+        </h1>
+        <div class="chat-container bg-gradient-to-b from-[#fdf4ff] to-white rounded-3xl shadow-sm border border-[#d8b4fe] h-[calc(100vh-180px)] flex flex-col">
+          <div class="flex-1 p-6 overflow-y-auto" id="soulyMessages">
+            <!-- Souly welcome message -->
+          </div>
+          <div class="p-4 border-t bg-white rounded-b-3xl">
+            <div class="flex gap-2">
+              <input type="text" id="soulyInput" placeholder="Nói với Souly về cảm xúc của bạn..." 
+                     class="input input-bordered flex-1 rounded-2xl" onkeypress="if(event.key==='Enter') sendSoulyChat()">
+              <button onclick="sendSoulyChat()" class="btn btn-secondary rounded-2xl" style="background:#d8b4fe; border:none; color:#4c1d95">Gửi</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- TAB: NotebookLM -->
-    <div id="tab-notebook" style="display:none">
-      <div class="page-title">Phân tích NotebookLM</div>
-      <p style="margin-top:40px; color:#666;">Tính năng NotebookLM đang được phát triển...</p>
-    </div>
+      <!-- Các tab khác -->
+      <div id="tab-repo" class="tab-content hidden">
+        <h1 class="text-3xl font-bold">Tài liệu</h1>
+        <p class="mt-4 text-gray-600">Danh sách tất cả tài liệu sẽ hiển thị ở đây.</p>
+      </div>
 
-  </main>
+      <div id="tab-notebook" class="tab-content hidden">
+        <h1 class="text-3xl font-bold">NotebookLM Analysis</h1>
+        <p class="mt-4 text-gray-600">Tính năng phân tích sâu đang được phát triển.</p>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script>
-// Switch Tab Function
-function switchTab(tab) {
-  document.querySelectorAll('.main-content > div').forEach(div => {
-    div.style.display = 'none';
-  });
-  document.getElementById('tab-' + tab).style.display = 'block';
+// Tailwind script đã được load qua CDN
 
-  document.querySelectorAll('.sidebar-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+  document.getElementById('tab-' + tab).classList.remove('hidden');
+  
+  document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
   document.getElementById('btn-' + tab).classList.add('active');
+
+  document.getElementById('current-page').textContent = 
+    tab === 'upload' ? 'Kho của tôi' :
+    tab === 'repo' ? 'Tài liệu' :
+    tab === 'chat' ? 'Chat Kho Trí' :
+    tab === 'souly' ? 'Chat với Souly' : 'NotebookLM';
 }
 
-// Simple Chat Functions (simulate)
+// Chat simulate
 function sendChat() {
   const input = document.getElementById('chatInput');
   if (!input.value.trim()) return;
-  alert("Bạn đã gửi: " + input.value + "\n\n(Tính năng chat thật sẽ kết nối Claude sau)");
+  alert(`Humai nhận được: "${input.value}"\n\n(Đang simulate - sau này sẽ kết nối Claude)`);
   input.value = '';
 }
 
 function sendSoulyChat() {
   const input = document.getElementById('soulyInput');
   if (!input.value.trim()) return;
-  alert("Souly nhận được: " + input.value + "\n\n(Souly đang lắng nghe bạn...)");
+  alert(`Souly nhận được: "${input.value}"\n\n🌸 Souly đang lắng nghe và đồng hành cùng bạn...`);
   input.value = '';
 }
 
-function sendPromptChip(btn) {
-  document.getElementById('chatInput').value = btn.textContent;
-  sendChat();
-}
-
-function sendSoulyPrompt(btn) {
-  document.getElementById('soulyInput').value = btn.textContent;
-  sendSoulyChat();
-}
-
-// Khởi tạo khi load trang
+// Khởi tạo
 document.addEventListener('DOMContentLoaded', () => {
   switchTab('upload');
+  
+  // Thêm welcome message cho Souly
+  const soulyMsg = document.getElementById('soulyMessages');
+  if (soulyMsg) {
+    soulyMsg.innerHTML = `
+      <div class="chat chat-start">
+        <div class="chat-bubble chat-bubble-souly">
+          Chào bạn ❤️<br><br>
+          Mình là Souly. Hôm nay bạn muốn chia sẻ cảm xúc gì với mình?
+        </div>
+      </div>
+    `;
+  }
 });
 </script>
 
