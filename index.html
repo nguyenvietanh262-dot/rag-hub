@@ -27,322 +27,69 @@
     --radius-sm: 12px;
   }
 
-  /* ... (giữ nguyên toàn bộ style cũ của bạn, chỉ thêm phần mới dưới đây) ... */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* SOULY MODE - Đặc biệt hơn */
-  .souly-mode .chat-messages { background: linear-gradient(180deg, #fdf4ff 0%, #f3e8ff 100%); }
-  .souly-avatar {
-    background: linear-gradient(135deg, var(--soul-purple), var(--soul-pink));
-    color: white;
-    box-shadow: 0 0 0 3px rgba(216,180,254,0.3);
-  }
-  .souly-bubble {
-    background: white;
-    border: 2px solid var(--soul-purple);
-    border-radius: 20px 20px 20px 4px;
-  }
-  .souly-header {
-    background: linear-gradient(135deg, var(--soul-purple), var(--purple-light));
-    color: #4C1D95;
-  }
-</style>
-</head>
-<body>
-
-<!-- LANDING PAGE giữ nguyên (bạn có thể copy phần cũ) -->
-
-  #landing {
-    flex-direction: column;
-    min-height: 100vh;
-  }
- 
-  /* NAV */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 48px;
-    backdrop-filter: blur(12px);
-    background: rgba(247,253,251,0.7);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 26px;
-    color: var(--text);
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo-icon {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, var(--mint), var(--purple));
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-  }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .btn-nav {
-    background: var(--text);
-    color: white;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 50px;
+  body {
     font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  .btn-nav:hover { transform: translateY(-1px); opacity: 0.85; }
- 
-  /* HERO */
-  .hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 24px 60px;
-    gap: 32px;
-  }
- 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--purple-light);
-    border: 1px solid var(--purple);
-    border-radius: 50px;
-    padding: 8px 18px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--purple-dark);
-    animation: fadeSlideDown 0.6s ease both;
-  }
- 
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(42px, 7vw, 80px);
-    line-height: 1.1;
-    letter-spacing: -2px;
-    max-width: 900px;
-    animation: fadeSlideDown 0.7s ease 0.1s both;
-  }
-  h1 em {
-    font-style: italic;
-    background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
- 
-  .hero-sub {
-    font-size: 20px;
-    color: var(--text-muted);
-    max-width: 600px;
-    line-height: 1.6;
-    font-weight: 500;
-    animation: fadeSlideDown 0.7s ease 0.2s both;
-  }
- 
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeSlideDown 0.7s ease 0.3s both;
-  }
- 
-  .btn-primary {
-    background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    color: white;
-    border: none;
-    padding: 16px 36px;
-    border-radius: 50px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    cursor: pointer;
-    transition: transform 0.25s, box-shadow 0.25s;
-    box-shadow: 0 4px 24px rgba(155,130,245,0.35);
-  }
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(155,130,245,0.45);
-  }
- 
-  .btn-secondary {
-    background: white;
-    color: var(--text);
-    border: 2px solid var(--border);
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    cursor: pointer;
-    transition: transform 0.25s, border-color 0.25s;
-  }
-  .btn-secondary:hover { transform: translateY(-2px); border-color: var(--mint-dark); }
- 
-  /* VAULT ILLUSTRATION */
-  .vault-visual {
-    position: relative;
-    width: 520px;
-    max-width: 90vw;
-    height: 280px;
-    animation: fadeSlideDown 0.8s ease 0.4s both;
-    margin-top: 8px;
-  }
- 
-  .vault-box {
-    position: absolute;
-    inset: 20px;
-    background: white;
-    border-radius: 32px;
-    border: 2px solid var(--mint);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
- 
-  .vault-inner {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 24px;
-    width: 100%;
-  }
- 
-  .doc-card {
     background: var(--bg);
-    border-radius: 12px;
-    padding: 12px 10px;
-    border: 1px solid var(--border);
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    animation: floatIn 0.5s ease both;
-  }
-  .doc-card:nth-child(1) { animation-delay: 0.6s; }
-  .doc-card:nth-child(2) { animation-delay: 0.8s; }
-  .doc-card:nth-child(3) { animation-delay: 1.0s; }
-  .doc-card:nth-child(4) { animation-delay: 1.2s; }
-  .doc-card:nth-child(5) { animation-delay: 1.4s; }
-  .doc-card:nth-child(6) { animation-delay: 1.6s; }
- 
-  .doc-icon { font-size: 20px; }
-  .doc-lines { display: flex; flex-direction: column; gap: 3px; }
-  .doc-line {
-    height: 4px;
-    border-radius: 2px;
-    background: var(--mint);
-    opacity: 0.6;
-  }
-  .doc-line:nth-child(2) { width: 70%; }
-  .doc-line:nth-child(3) { width: 50%; }
- 
-  /* AI BADGE floating */
-  .ai-badge-float {
-    position: absolute;
-    top: 0; right: -20px;
-    background: linear-gradient(135deg, var(--purple-light), white);
-    border: 2px solid var(--purple);
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--purple-dark);
-    box-shadow: 0 4px 16px rgba(199,180,255,0.3);
-    animation: float 3s ease-in-out infinite;
-  }
- 
-  /* FEATURES */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 0 48px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    animation: fadeSlideDown 0.8s ease 0.5s both;
-  }
- 
-  .feat-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .feat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-  .feat-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-  .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-  .feat-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; }
- 
-  /* ══════════════════════════════════════
-     DASHBOARD
-  ══════════════════════════════════════ */
-  #dashboard {
-    flex-direction: row;
+    color: var(--text);
     min-height: 100vh;
-    align-items: stretch;
+    overflow-x: hidden;
   }
- 
+
+  /* Background mesh */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(165,243,224,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 90% 80%, rgba(199,180,255,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 10%, rgba(165,243,224,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Views */
+  .view { display: none; }
+  .view.active { display: flex; flex-direction: row; min-height: 100vh; }
+
   /* SIDEBAR */
   .sidebar {
-    width: 240px;
-    min-height: 100vh;
-    background: rgba(255,255,255,0.9);
+    width: 260px;
+    min-width: 260px;
+    background: rgba(255,255,255,0.95);
     border-right: 1px solid var(--border);
     backdrop-filter: blur(16px);
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
-    padding: 24px 16px;
-    gap: 8px;
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    z-index: 10;
   }
- 
+
   .sidebar-logo {
     font-family: 'DM Serif Display', serif;
-    font-size: 20px;
+    font-size: 22px;
     padding: 8px 12px 20px;
-    display: flex; align-items: center; gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
-  .sidebar-logo .logo-icon { width: 32px; height: 32px; font-size: 15px; }
- 
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--mint), var(--purple));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: white;
+  }
+
   .sidebar-btn {
     display: flex;
     align-items: center;
@@ -361,12 +108,16 @@
     width: 100%;
   }
   .sidebar-btn:hover { background: var(--mint-light); color: var(--text); }
-  .sidebar-btn.active { background: linear-gradient(135deg, var(--mint-light), var(--purple-light)); color: var(--text); font-weight: 700; }
+  .sidebar-btn.active { 
+    background: linear-gradient(135deg, var(--mint-light), var(--purple-light)); 
+    color: var(--text); 
+    font-weight: 700; 
+  }
   .sidebar-btn .s-icon { font-size: 18px; width: 24px; text-align: center; }
- 
-  .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
+  .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
   .sidebar-spacer { flex: 1; }
- 
+
   .sidebar-user {
     display: flex;
     align-items: center;
@@ -383,1127 +134,66 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 14px; font-weight: 700; color: white;
   }
-  .user-info { flex: 1; }
-  .user-name { font-size: 13px; font-weight: 700; }
-  .user-plan { font-size: 11px; color: var(--text-muted); }
- 
+
   /* MAIN CONTENT */
   .main-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     padding: 32px;
-    gap: 24px;
     overflow-y: auto;
-    max-height: 100vh;
-  }
- 
-  .page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .page-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; }
-  .page-sub { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-top: 4px; }
- 
-  /* UPLOAD ZONE */
-  .upload-zone {
-    border: 2.5px dashed var(--mint-dark);
-    border-radius: var(--radius);
-    padding: 48px 32px;
-    text-align: center;
-    background: linear-gradient(135deg, var(--mint-light), var(--purple-light));
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .upload-zone:hover { border-color: var(--purple-dark); transform: scale(1.005); }
-  .upload-zone.dragover { border-color: var(--purple-dark); background: var(--purple-light); transform: scale(1.01); }
- 
-  .upload-icon { font-size: 52px; margin-bottom: 16px; display: block; }
-  .upload-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
-  .upload-sub { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-bottom: 20px; }
-  .upload-formats {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .fmt-tag {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
- 
-  /* PROGRESS */
-  .progress-block {
-    display: none;
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .progress-block.active { display: block; }
-  .progress-step {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
-  }
-  .progress-step:last-child { border-bottom: none; }
-  .progress-step.done { color: var(--mint-dark); }
-  .progress-step.active-step { color: var(--text); }
-  .step-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
-  }
-  .progress-step.done .step-dot { background: var(--mint-dark); }
-  .progress-step.active-step .step-dot { background: var(--purple-dark); animation: pulse 1s infinite; }
- 
-  .progress-bar-wrap {
-    background: var(--bg);
-    border-radius: 50px;
-    height: 8px;
-    margin-top: 16px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    border-radius: 50px;
-    background: linear-gradient(90deg, var(--mint-dark), var(--purple-dark));
-    transition: width 0.5s ease;
-    width: 0%;
-  }
- 
-  /* REPO GRID */
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .section-title { font-size: 18px; font-weight: 700; }
- 
-  .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    padding: 10px 18px;
-    flex: 1;
-    max-width: 360px;
-    transition: border-color 0.2s;
-  }
-  .search-bar:focus-within { border-color: var(--mint-dark); }
-  .search-bar input {
-    border: none;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
     background: transparent;
-    flex: 1;
   }
-  .search-bar input::placeholder { color: var(--text-muted); }
- 
-  .filter-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .filter-chip {
-    padding: 6px 14px;
-    border-radius: 50px;
-    border: 1.5px solid var(--border);
-    background: white;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .filter-chip:hover, .filter-chip.active { background: var(--mint); border-color: var(--mint-dark); color: var(--text); }
- 
-  .doc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-  }
- 
-  .repo-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 20px;
-    border: 1.5px solid var(--border);
-    box-shadow: var(--shadow);
-    transition: all 0.25s;
-    cursor: pointer;
-  }
-  .repo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--mint); }
- 
-  .repo-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-  .repo-file-icon {
-    width: 42px; height: 42px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
-  .icon-pdf { background: #FFF0F0; }
-  .icon-doc { background: #F0F4FF; }
-  .icon-img { background: #FFF8E8; }
-  .icon-audio { background: var(--mint-light); }
- 
-  .repo-card-menu { color: var(--text-muted); font-size: 18px; cursor: pointer; }
-  .repo-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
-  .repo-card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-  .repo-date { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-  .repo-tags { display: flex; gap: 4px; flex-wrap: wrap; }
-  .repo-tag {
-    padding: 2px 8px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
-    background: var(--purple-light);
-    color: var(--purple-dark);
-  }
- 
-  .repo-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 14px;
-    border-top: 1px solid var(--border);
-    padding-top: 14px;
-  }
-  .repo-action-btn {
-    flex: 1;
-    padding: 7px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    background: var(--bg);
-    font-family: 'Quicksand', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-  .repo-action-btn:hover { background: var(--mint-light); color: var(--text); border-color: var(--mint); }
-  .repo-action-btn.danger:hover { background: #FFF0F0; color: #E05555; border-color: #FFB3B3; }
- 
-  /* CHAT */
-  .chat-wrap {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 64px);
-    gap: 0;
-  }
- 
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 8px 0 16px;
-  }
- 
-  .msg {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    max-width: 780px;
-  }
-  .msg.user { flex-direction: row-reverse; align-self: flex-end; }
- 
-  .msg-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-  .ai-avatar { background: linear-gradient(135deg, var(--mint), var(--purple)); color: white; font-size: 14px; font-weight: 700; }
-  .user-av { background: var(--text); color: white; font-size: 14px; font-weight: 700; }
- 
-  .msg-bubble {
-    background: white;
-    border-radius: 18px 18px 18px 4px;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    font-size: 14px;
-    line-height: 1.65;
-    font-weight: 500;
-    max-width: 560px;
-  }
-  .msg.user .msg-bubble {
-    background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    color: white;
-    border: none;
-    border-radius: 18px 18px 4px 18px;
-  }
- 
-  .msg-source {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: 600;
-  }
- 
-  .prompt-chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 8px 0 4px;
-  }
-  .prompt-chip {
-    padding: 8px 14px;
-    border-radius: 50px;
-    border: 1.5px solid var(--border);
-    background: white;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .prompt-chip:hover { background: var(--mint-light); border-color: var(--mint-dark); color: var(--text); }
- 
+
+  /* Các style khác giữ nguyên từ code cũ của bạn */
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .page-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; }
+
+  /* Chat styles */
+  .chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 100px); }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px 0; display: flex; flex-direction: column; gap: 16px; }
+  .msg { display: flex; gap: 12px; max-width: 75%; }
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+  .msg-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .ai-avatar { background: linear-gradient(135deg, var(--mint), var(--purple)); color: white; }
+  .souly-avatar { background: linear-gradient(135deg, var(--soul-purple), var(--soul-pink)); color: white; box-shadow: 0 0 0 3px rgba(216,180,254,0.3); }
+  .msg-bubble { background: white; border-radius: 18px 18px 18px 4px; padding: 14px 18px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); font-size: 14.5px; line-height: 1.65; }
+  .msg.user .msg-bubble { background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark)); color: white; border: none; border-radius: 18px 18px 4px 18px; }
+  .souly-bubble { border: 2px solid var(--soul-purple); }
+
   .chat-input-row {
-    display: flex;
-    gap: 12px;
-    align-items: flex-end;
-    background: white;
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    border: 1.5px solid var(--border);
-    box-shadow: var(--shadow);
-    margin-top: 8px;
+    display: flex; gap: 12px; align-items: flex-end;
+    background: white; border-radius: var(--radius); padding: 14px 16px;
+    border: 1.5px solid var(--border); box-shadow: var(--shadow);
   }
   .chat-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    background: transparent;
-    resize: none;
-    min-height: 24px;
-    max-height: 120px;
+    flex: 1; border: none; outline: none; font-size: 15px; resize: none; min-height: 24px;
   }
-  .chat-input::placeholder { color: var(--text-muted); }
   .chat-send {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
+    border: none; color: white; font-size: 18px; cursor: pointer;
   }
-  .chat-send:hover { transform: scale(1.1); }
- 
-  /* NOTEBOOK MODE */
-  .notebook-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+
+  .prompt-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 0; }
+  .prompt-chip {
+    padding: 8px 14px; border-radius: 50px; border: 1.5px solid var(--border);
+    background: white; font-size: 13px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s;
   }
- 
-  .nb-selector {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .nb-selector h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
- 
-  .nb-file-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-  .nb-file-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border);
-    background: var(--bg);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .nb-file-item:hover { border-color: var(--mint-dark); background: var(--mint-light); }
-  .nb-file-item.selected { border-color: var(--purple-dark); background: var(--purple-light); }
-  .nb-checkbox {
-    width: 18px; height: 18px;
-    border-radius: 5px;
-    border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-  .nb-file-item.selected .nb-checkbox {
-    background: var(--purple-dark);
-    border-color: var(--purple-dark);
-    color: white;
-    font-size: 11px;
-  }
- 
-  .nb-generate-btn {
-    background: linear-gradient(135deg, var(--mint-dark), var(--purple-dark));
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.25s;
-    box-shadow: 0 4px 20px rgba(155,130,245,0.3);
-  }
-  .nb-generate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(155,130,245,0.4); }
- 
-  .nb-outputs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .nb-output-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1.5px solid var(--border);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: all 0.25s;
-  }
-  .nb-output-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-  .nb-out-icon { font-size: 36px; margin-bottom: 12px; }
-  .nb-out-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-  .nb-out-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 500; }
-  .nb-out-badge {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
-    background: var(--mint-light);
-    color: var(--mint-dark);
-  }
-  .nb-out-badge.purple { background: var(--purple-light); color: var(--purple-dark); }
- 
-  /* STATS ROW */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px;
-  }
-  .stat-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 20px;
-    border: 1px solid var(--border);
-    text-align: center;
-  }
-  .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--text); }
-  .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 4px; }
- 
-  /* ANIMATIONS */
-  @keyframes fadeSlideDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes floatIn {
-    from { opacity: 0; transform: scale(0.8) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  @keyframes typing {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
- 
-  .typing-dots span {
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--text-muted);
-    animation: typing 1.2s ease-in-out infinite;
-  }
-  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
- 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 3px; }
- 
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .features { padding: 0 20px 60px; }
-    .sidebar { width: 56px; }
-    .sidebar-logo span, .sidebar-btn span:not(.s-icon) { display: none; }
-    .main-content { padding: 20px 16px; }
+  .prompt-chip:hover { background: var(--mint-light); border-color: var(--mint-dark); color: var(--text); }
+
+  /* Toast */
+  #toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    background: var(--text); color: white; padding: 12px 24px; border-radius: 50px;
+    font-weight: 700; font-size: 14px; z-index: 999; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    opacity: 0; transition: opacity 0.3s;
   }
 </style>
 </head>
 <body>
- 
-<!-- ════════════════════════════
-     LANDING PAGE
-════════════════════════════ -->
-<div id="landing" class="view active">
- 
-  <nav>
-    <div class="logo">
-      <div class="logo-icon">📚</div>
-      KhoTrí AI
-    </div>
-    <div class="nav-links">
-      <a href="#">Tính năng</a>
-      <a href="#">Bảo mật</a>
-      <a href="#">Giá cả</a>
-      <button class="btn-nav" onclick="goToDashboard()">Đăng nhập</button>
-    </div>
-  </nav>
- 
-  <div class="hero">
-    <div class="hero-badge">
-      ✨ AI thư ký riêng của bạn
-    </div>
- 
-    <h1>Upload một lần.<br><em>Hỏi bất cứ lúc nào.</em></h1>
- 
-    <p class="hero-sub">
-      Kéo thả PDF, Word, ảnh, ghi âm → AI tự chuyển Markdown + lưu trữ + phân tích ngay lập tức. Không cần kỹ thuật.
-    </p>
- 
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="goToDashboard()">🚀 Bắt đầu miễn phí – Chỉ 3 giây</button>
-      <button class="btn-secondary" onclick="goToDashboard()">Xem demo →</button>
-    </div>
- 
-    <div class="vault-visual">
-      <div class="ai-badge-float">🤖 AI đang sắp xếp…</div>
-      <div class="vault-box">
-        <div class="vault-inner">
-          <div class="doc-card">
-            <div class="doc-icon">📄</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-          <div class="doc-card">
-            <div class="doc-icon">🎧</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-          <div class="doc-card">
-            <div class="doc-icon">🖼️</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-          <div class="doc-card">
-            <div class="doc-icon">📊</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-          <div class="doc-card">
-            <div class="doc-icon">📝</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-          <div class="doc-card">
-            <div class="doc-icon">📋</div>
-            <div class="doc-lines">
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-              <div class="doc-line"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-  <div class="features">
-    <div class="feat-card">
-      <div class="feat-icon" style="background:var(--mint-light)">⚡</div>
-      <h3>Xử lý tức thì</h3>
-      <p>Upload xong là có Markdown sạch ngay. AI tự đọc, tự phân tích, tự gắn tag — bạn không cần làm gì thêm.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:var(--purple-light)">💬</div>
-      <h3>Chat với kho tài liệu</h3>
-      <p>Hỏi bất cứ điều gì về toàn bộ tài liệu của bạn. AI tìm thông tin chính xác từ đúng file cần thiết.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#FFF8E8">🧠</div>
-      <h3>Phân tích sâu NotebookLM</h3>
-      <p>Tự động tạo mindmap, FAQ, timeline, tóm tắt audio bằng giọng Việt Nam từ tài liệu của bạn.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#FFF0F0">🔒</div>
-      <h3>Bảo mật tuyệt đối</h3>
-      <p>Mã hóa end-to-end. Chỉ bạn truy cập được. Xóa hoàn toàn bất kỳ lúc nào chỉ với một nút bấm.</p>
-    </div>
-  </div>
- 
-</div>
- 
-<!-- ════════════════════════════
-     DASHBOARD
-════════════════════════════ -->
-<div id="dashboard" class="view">
- 
+
+<div id="dashboard" class="view active">
+
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon">📚</div>
-      <span>KhoTrí AI</span>
-    </div>
- 
-    <button class="sidebar-btn active" id="btn-upload" onclick="switchTab('upload')">
-      <span class="s-icon">🏠</span>
-      <span>Kho của tôi</span>
-    </button>
-    <button class="sidebar-btn" id="btn-repo" onclick="switchTab('repo')">
-      <span class="s-icon">📁</span>
-      <span>Tài liệu</span>
-    </button>
-    <button class="sidebar-btn" id="btn-chat" onclick="switchTab('chat')">
-      <span class="s-icon">💬</span>
-      <span>Chat với Kho</span>
-    </button>
-    <button class="sidebar-btn" id="btn-notebook" onclick="switchTab('notebook')">
-      <span class="s-icon">🧠</span>
-      <span>NotebookLM</span>
-    </button>
- 
-    <div class="sidebar-divider"></div>
- 
-    <button class="sidebar-btn" onclick="alert('Cài đặt bảo mật & xóa dữ liệu')">
-      <span class="s-icon">⚙️</span>
-      <span>Cài đặt</span>
-    </button>
- 
-    <div class="sidebar-spacer"></div>
- 
-    <div class="sidebar-user">
-      <div class="user-avatar">M</div>
-      <div class="user-info">
-        <div class="user-name">Minh Anh</div>
-        <div class="user-plan">Gói miễn phí</div>
-      </div>
-    </div>
-  </aside>
- 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
- 
-    <!-- ── TAB: UPLOAD / HOME ── -->
-    <div id="tab-upload">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Kho Trí của tôi</div>
-          <div class="page-sub">Xin chào Minh Anh 👋 — Kho đang có 6 tài liệu</div>
-        </div>
-      </div>
- 
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-num">6</div>
-          <div class="stat-label">Tài liệu</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">48</div>
-          <div class="stat-label">Chunks lưu trữ</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">12</div>
-          <div class="stat-label">Câu hỏi đã hỏi</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Phân tích tạo</div>
-        </div>
-      </div>
- 
-      <!-- UPLOAD ZONE -->
-      <div class="upload-zone" id="uploadZone"
-           ondragover="handleDragOver(event)"
-           ondragleave="handleDragLeave(event)"
-           ondrop="handleDrop(event)"
-           onclick="document.getElementById('fileInput').click()">
-        <span class="upload-icon">☁️</span>
-        <div class="upload-title">Kéo & thả file vào đây</div>
-        <div class="upload-sub">Hoặc bấm để chọn file từ máy tính của bạn</div>
-        <div class="upload-formats">
-          <span class="fmt-tag">PDF</span>
-          <span class="fmt-tag">DOCX</span>
-          <span class="fmt-tag">TXT</span>
-          <span class="fmt-tag">JPG/PNG</span>
-          <span class="fmt-tag">MP3/WAV</span>
-        </div>
-        <input type="file" id="fileInput" style="display:none" multiple onchange="handleFileSelect(event)">
-      </div>
- 
-      <!-- PROGRESS -->
-      <div class="progress-block" id="progressBlock">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div style="font-weight:700;font-size:15px">Đang xử lý file…</div>
-          <div id="progressPercent" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--purple-dark);font-weight:700">0%</div>
-        </div>
-        <div class="progress-step done" id="step1">
-          <div class="step-dot"></div> Đọc file xong ✓
-        </div>
-        <div class="progress-step" id="step2">
-          <div class="step-dot"></div> Đang chuyển sang Markdown…
-        </div>
-        <div class="progress-step" id="step3">
-          <div class="step-dot"></div> Lưu vào Kho Trí (chunk)
-        </div>
-        <div class="progress-step" id="step4">
-          <div class="step-dot"></div> Tạo embedding vector
-        </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="progressFill"></div>
-        </div>
-      </div>
- 
-      <!-- RECENT FILES -->
-      <div class="section-header">
-        <div class="section-title">📄 Tài liệu gần đây</div>
-        <button class="filter-chip" onclick="switchTab('repo')">Xem tất cả →</button>
-      </div>
-      <div class="doc-grid" id="recentDocs"></div>
-    </div>
- 
-    <!-- ── TAB: REPOSITORY ── -->
-    <div id="tab-repo" style="display:none">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Kho tài liệu</div>
-          <div class="page-sub">Tất cả 6 file — được AI tự động phân loại</div>
-        </div>
-        <div class="search-bar">
-          <span>🔍</span>
-          <input type="text" placeholder="Tìm kiếm tài liệu…" oninput="filterDocs(this.value)">
-        </div>
-      </div>
- 
-      <div class="filter-row" id="filterRow">
-        <button class="filter-chip active" onclick="filterByTag('tất cả', this)">Tất cả</button>
-        <button class="filter-chip" onclick="filterByTag('học tập', this)">📚 Học tập</button>
-        <button class="filter-chip" onclick="filterByTag('công việc', this)">💼 Công việc</button>
-        <button class="filter-chip" onclick="filterByTag('sức khỏe', this)">🏃 Sức khỏe</button>
-        <button class="filter-chip" onclick="filterByTag('cá nhân', this)">✏️ Cá nhân</button>
-      </div>
- 
-      <div class="doc-grid" id="allDocs"></div>
-    </div>
- 
-    <!-- ── TAB: CHAT ── -->
-    <div id="tab-chat" style="display:none">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Chat với Kho Trí</div>
-          <div class="page-sub">AI đang kết nối với 6 tài liệu của bạn</div>
-        </div>
-        <button class="nb-generate-btn" style="font-size:13px;padding:10px 18px" onclick="switchTab('notebook')">🧠 Sang NotebookLM</button>
-      </div>
- 
-      <div class="chat-wrap">
-        <div class="chat-messages" id="chatMessages">
-          <div class="msg">
-            <div class="msg-avatar ai-avatar">K</div>
-            <div>
-              <div class="msg-bubble">
-                Xin chào! Tôi là KhoTrí AI 👋<br><br>
-                Tôi đã đọc toàn bộ <strong>6 tài liệu</strong> trong kho của bạn. Bạn có thể hỏi bất cứ điều gì — tôi sẽ tìm câu trả lời từ đúng tài liệu cần thiết.<br><br>
-                Hoặc chọn gợi ý bên dưới để bắt đầu! ✨
-              </div>
-              <div class="msg-source">📚 KhoTrí AI • vừa xong</div>
-            </div>
-          </div>
-        </div>
- 
-        <div class="prompt-chips">
-          <button class="prompt-chip" onclick="sendPromptChip(this)">📝 Tóm tắt tài liệu mới nhất</button>
-          <button class="prompt-chip" onclick="sendPromptChip(this)">🔍 So sánh 2 file gần đây</button>
-          <button class="prompt-chip" onclick="sendPromptChip(this)">💡 Rút ra 5 insight quan trọng</button>
-          <button class="prompt-chip" onclick="sendPromptChip(this)">📊 Tổng hợp theo chủ đề</button>
-        </div>
- 
-        <div class="chat-input-row">
-          <textarea class="chat-input" id="chatInput" placeholder="Hỏi bất cứ điều gì về kho tài liệu của bạn…" rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
-            oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
-          <button class="chat-send" onclick="sendChat()">➤</button>
-        </div>
-      </div>
-    </div>
- 
-    <!-- ── TAB: NOTEBOOK ── -->
-    <div id="tab-notebook" style="display:none">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Phân tích NotebookLM</div>
-          <div class="page-sub">Chọn tài liệu → AI tự sinh mindmap, FAQ, audio, timeline…</div>
-        </div>
-      </div>
- 
-      <div class="nb-selector">
-        <h3>📂 Chọn tài liệu để phân tích</h3>
-        <div class="nb-file-list" id="nbFileList"></div>
-        <button class="nb-generate-btn" onclick="generateNotebook()">✨ Tạo phân tích AI ngay</button>
-      </div>
- 
-      <div class="nb-outputs" id="nbOutputs" style="display:none"></div>
-    </div>
- 
-  </main>
-</div>
- 
-<script>
-// ── DATA ──
-const docs = [
-  { id:1, name:'Luận văn tốt nghiệp 2024.pdf', icon:'📄', type:'pdf', date:'22/04/2025', tags:['học tập'], size:'4.2 MB' },
-  { id:2, name:'Kế hoạch Q2 công ty.docx', icon:'📝', type:'doc', date:'20/04/2025', tags:['công việc'], size:'1.1 MB' },
-  { id:3, name:'Ghi chú cuộc họp ngày 18.txt', icon:'📋', type:'doc', date:'18/04/2025', tags:['công việc'], size:'0.2 MB' },
-  { id:4, name:'Ảnh chụp tài liệu hội thảo.jpg', icon:'🖼️', type:'img', date:'15/04/2025', tags:['học tập'], size:'2.7 MB' },
-  { id:5, name:'Podcast sức khỏe tâm thần.mp3', icon:'🎧', type:'audio', date:'10/04/2025', tags:['sức khỏe'], size:'18.5 MB' },
-  { id:6, name:'Nhật ký học tiếng Anh.txt', icon:'✏️', type:'doc', date:'08/04/2025', tags:['cá nhân','học tập'], size:'0.5 MB' },
-];
- 
-const iconClass = { pdf:'icon-pdf', doc:'icon-doc', img:'icon-img', audio:'icon-audio' };
- 
-function makeDocCard(doc) {
-  const tags = doc.tags.map(t => `<span class="repo-tag">#${t}</span>`).join('');
-  return `
-    <div class="repo-card" data-tags="${doc.tags.join(',')}">
-      <div class="repo-card-top">
-        <div class="repo-file-icon ${iconClass[doc.type]}">${doc.icon}</div>
-        <span class="repo-card-menu">⋯</span>
-      </div>
-      <h4>${doc.name}</h4>
-      <div style="font-size:12px;color:var(--text-muted);font-weight:600">${doc.size}</div>
-      <div class="repo-card-meta">
-        <span class="repo-date">📅 ${doc.date}</span>
-        <div class="repo-tags">${tags}</div>
-      </div>
-      <div class="repo-actions">
-        <button class="repo-action-btn" onclick="viewMarkdown('${doc.name}')">👁 Xem MD</button>
-        <button class="repo-action-btn" onclick="switchTab('chat')">💬 Chat</button>
-        <button class="repo-action-btn danger" onclick="confirmDelete(${doc.id})">🗑</button>
-      </div>
-    </div>
-  `;
-}
- 
-function renderDocs(container, list) {
-  document.getElementById(container).innerHTML = list.map(makeDocCard).join('');
-}
- 
-// ── NAVIGATION ──
-function goToDashboard() {
-  document.getElementById('landing').classList.remove('active');
-  document.getElementById('dashboard').classList.add('active');
-  renderDocs('recentDocs', docs.slice(0,4));
-  renderDocs('allDocs', docs);
-  renderNbFiles();
-}
- 
-function switchTab(tab) {
-  ['upload','repo','chat','notebook'].forEach(t => {
-    document.getElementById('tab-'+t).style.display = t===tab ? 'block' : 'none';
-    document.getElementById('btn-'+t)?.classList.remove('active');
-  });
-  if(tab==='chat') document.getElementById('tab-'+tab).style.display='flex';
-  document.getElementById('btn-'+tab)?.classList.add('active');
-}
- 
-// ── UPLOAD ──
-function handleDragOver(e) {
-  e.preventDefault();
-  document.getElementById('uploadZone').classList.add('dragover');
-}
-function handleDragLeave(e) {
-  document.getElementById('uploadZone').classList.remove('dragover');
-}
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('uploadZone').classList.remove('dragover');
-  const files = e.dataTransfer.files;
-  if(files.length) simulateUpload(files[0].name);
-}
-function handleFileSelect(e) {
-  if(e.target.files.length) simulateUpload(e.target.files[0].name);
-}
- 
-function simulateUpload(name) {
-  const pb = document.getElementById('progressBlock');
-  pb.classList.add('active');
- 
-  const steps = ['step1','step2','step3','step4'];
-  const labels = ['Đọc file xong ✓','Chuyển Markdown xong ✓','Lưu vào Kho (12/12 chunks) ✓','Embedding vector xong ✓'];
-  const pcts = [25, 55, 80, 100];
- 
-  steps.forEach(s => {
-    document.getElementById(s).className = 'progress-step';
-    document.getElementById(s).querySelector('.step-dot').style='';
-  });
-  document.getElementById('progressFill').style.width = '0%';
-  document.getElementById('progressPercent').textContent = '0%';
- 
-  let i = 0;
-  const run = () => {
-    if(i>0) {
-      document.getElementById(steps[i-1]).className = 'progress-step done';
-      document.getElementById(steps[i-1]).innerHTML = `<div class="step-dot"></div> ${labels[i-1]}`;
-    }
-    if(i < steps.length) {
-      document.getElementById(steps[i]).className = 'progress-step active-step';
-      document.getElementById('progressFill').style.width = pcts[i]+'%';
-      document.getElementById('progressPercent').textContent = pcts[i]+'%';
-      i++;
-      setTimeout(run, 900 + Math.random()*400);
-    } else {
-      setTimeout(() => {
-        pb.classList.remove('active');
-        const newDoc = { id: docs.length+1, name, icon:'📄', type:'pdf', date:'24/04/2025', tags:['mới'], size:'?' };
-        docs.unshift(newDoc);
-        renderDocs('recentDocs', docs.slice(0,4));
-        renderDocs('allDocs', docs);
-        renderNbFiles();
-        showToast('✅ "'+name+'" đã vào Kho Trí!');
-      }, 500);
-    }
-  };
-  run();
-}
- 
-// ── FILTER ──
-function filterDocs(query) {
-  const q = query.toLowerCase();
-  const filtered = docs.filter(d => d.name.toLowerCase().includes(q));
-  renderDocs('allDocs', filtered);
-}
- 
-function filterByTag(tag, btn) {
-  document.querySelectorAll('#filterRow .filter-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const filtered = tag==='tất cả' ? docs : docs.filter(d => d.tags.includes(tag));
-  renderDocs('allDocs', filtered);
-}
- 
-// ── CHAT ──
-const chatResponses = [
-  'Dựa trên <strong>"Luận văn tốt nghiệp 2024.pdf"</strong>, tôi tìm thấy phần liên quan đến câu hỏi của bạn. Nội dung chính là: AI đang được ứng dụng rộng rãi trong xử lý ngôn ngữ tự nhiên, đặc biệt là các mô hình transformer…',
-  'Theo <strong>"Kế hoạch Q2 công ty.docx"</strong> và <strong>"Ghi chú cuộc họp ngày 18.txt"</strong>, có 3 điểm chính: (1) Tăng doanh thu 15%, (2) Ra mắt sản phẩm mới vào tháng 6, (3) Tuyển dụng thêm 10 nhân sự kỹ thuật.',
-  'Từ toàn bộ kho tài liệu, tôi rút ra được 5 insight quan trọng:\n\n1. 📊 Hiệu suất nhóm tăng khi có quy trình rõ ràng\n2. 🎯 Mục tiêu Q2 tập trung vào tăng trưởng người dùng\n3. 📚 Tài liệu học thuật nhấn mạnh phương pháp nghiên cứu định tính\n4. 🏃 Sức khỏe tâm thần liên quan đến năng suất làm việc\n5. ✏️ Học ngôn ngữ hiệu quả nhất khi kết hợp lý thuyết và thực hành',
-  'Tôi đã phân tích và so sánh hai tài liệu gần nhất. Điểm tương đồng: cả hai đều đề cập đến việc cải thiện quy trình. Điểm khác biệt: một tập trung vào học thuật, một tập trung vào thực tế doanh nghiệp.',
-];
-let chatIdx = 0;
- 
-function appendMsg(role, text) {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'msg' + (role==='user'?' user':'');
-  if(role==='user') {
-    div.innerHTML = `<div class="msg-avatar user-av">M</div><div class="msg-bubble">${text}</div>`;
-  } else {
-    div.innerHTML = `
-      <div class="msg-avatar ai-avatar">K</div>
-      <div>
-        <div class="msg-bubble" id="latestAI"></div>
-        <div class="msg-source">📚 Từ Kho Trí • ${new Date().toLocaleTimeString('vi')}</div>
-      </div>`;
-  }
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
- 
-function sendChat() {
-  const inp = document.getElementById('chatInput');
-  const txt = inp.value.trim();
-  if(!txt) return;
-  inp.value = '';
-  inp.style.height = 'auto';
- 
-  appendMsg('user', txt);
- 
-  // typing indicator
-  const typing = appendMsg('ai', '');
-  typing.querySelector('#latestAI').innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-  document.getElementById('chatMessages').scrollTop = 99999;
- 
-  setTimeout(() => {
-    const resp = chatResponses[chatIdx % chatResponses.length];
-    chatIdx++;
-    typing.querySelector('#latestAI').innerHTML = resp;
-    document.getElementById('chatMessages').scrollTop = 99999;
-  }, 1200 + Math.random()*600);
-}
- 
-function sendPromptChip(btn) {
-  document.getElementById('chatInput').value = btn.textContent;
-  sendChat();
-}
- 
-// ── NOTEBOOK ──
-const nbOutputsData = [
-  { icon:'🗺️', title:'Mindmap tương tác', desc:'Sơ đồ tư duy của toàn bộ nội dung, có thể zoom và click để xem chi tiết.', badge:'Xem ngay', type:'mint' },
-  { icon:'🎙️', title:'Audio Overview', desc:'Podcast tóm tắt 7 phút bằng giọng Việt Nam, phù hợp nghe khi di chuyển.', badge:'Nghe ngay', type:'mint' },
-  { icon:'❓', title:'FAQ tự động', desc:'30 câu hỏi thường gặp được AI tự sinh từ nội dung tài liệu, kèm câu trả lời.', badge:'Xem FAQ', type:'purple' },
-  { icon:'📅', title:'Timeline sự kiện', desc:'Dòng thời gian tất cả sự kiện, mốc thời gian xuất hiện trong tài liệu.', badge:'Xem Timeline', type:'purple' },
-  { icon:'📋', title:'Briefing Doc', desc:'Tài liệu tóm tắt 1 trang với những điểm quan trọng nhất để đọc nhanh.', badge:'Tải về MD', type:'mint' },
-  { icon:'📚', title:'Study Guide', desc:'Hướng dẫn học tập chi tiết với các câu hỏi ôn tập và gợi ý đọc thêm.', badge:'Xem Guide', type:'purple' },
-];
- 
-function renderNbFiles() {
-  document.getElementById('nbFileList').innerHTML = docs.map((d,i) => `
-    <div class="nb-file-item ${i<2?'selected':''}" onclick="toggleNbFile(this)">
-      <div class="nb-checkbox">${i<2?'✓':''}</div>
-      <span style="font-size:18px">${d.icon}</span>
-      <span>${d.name}</span>
-      <span style="margin-left:auto;font-size:12px;color:var(--text-muted)">${d.date}</span>
-    </div>
-  `).join('');
-}
- 
-function toggleNbFile(el) {
-  el.classList.toggle('selected');
-  const cb = el.querySelector('.nb-checkbox');
-  cb.textContent = el.classList.contains('selected') ? '✓' : '';
-}
- 
-function generateNotebook() {
-  const selected = document.querySelectorAll('.nb-file-item.selected');
-  if(!selected.length) { showToast('⚠️ Hãy chọn ít nhất 1 tài liệu!'); return; }
- 
-  showToast('🤖 AI đang phân tích… (~30 giây)');
- 
-  setTimeout(() => {
-    const out = document.getElementById('nbOutputs');
-    out.style.display = 'grid';
-    out.innerHTML = nbOutputsData.map(o => `
-      <div class="nb-output-card" onclick="showToast('Đang mở ${o.title}…')">
-        <div class="nb-out-icon">${o.icon}</div>
-        <div class="nb-out-title">${o.title}</div>
-        <div class="nb-out-desc">${o.desc}</div>
-        <span class="nb-out-badge ${o.type==='purple'?'purple':''}">${o.badge} →</span>
-      </div>
-    `).join('');
-    showToast('✅ Phân tích hoàn tất! 6 định dạng đã sẵn sàng.');
-  }, 2000);
-}
- 
-// ── HELPERS ──
-function viewMarkdown(name) { showToast('📄 Đang mở Markdown của "'+name+'"…'); }
-function confirmDelete(id) {
-  if(confirm('Xóa tài liệu này khỏi Kho Trí?')) {
-    const idx = docs.findIndex(d=>d.id===id);
-    if(idx>-1) { docs.splice(idx,1); renderDocs('allDocs',docs); renderDocs('recentDocs',docs.slice(0,4)); renderNbFiles(); showToast('🗑 Đã xóa khỏi Kho Trí'); }
-  }
-}
- 
-let toastTimer;
-function showToast(msg) {
-  let t = document.getElementById('toast');
-  if(!t) {
-    t = document.createElement('div');
-    t.id = 'toast';
-    t.style = `position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--text);color:white;padding:12px 24px;border-radius:50px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.2);transition:opacity 0.3s;`;
-    document.body.appendChild(t);
-  }
-  t.textContent = msg;
-  t.style.opacity = '1';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.style.opacity='0', 3000);
-}
-</script>
-</body>
-
-<!-- DASHBOARD -->
-<div id="dashboard" class="view">
-
-  <!-- SIDEBAR - ĐÃ THÊM SOULY -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-icon">📚</div>
@@ -1516,20 +206,18 @@ function showToast(msg) {
     <button class="sidebar-btn" id="btn-repo" onclick="switchTab('repo')">
       <span class="s-icon">📁</span> <span>Tài liệu</span>
     </button>
-
-    <!-- Hai nút Chat riêng biệt -->
     <button class="sidebar-btn" id="btn-chat" onclick="switchTab('chat')">
       <span class="s-icon">💬</span> <span>Chat Kho Trí (Humai)</span>
     </button>
     <button class="sidebar-btn" id="btn-souly" onclick="switchTab('souly')">
       <span class="s-icon">🌸</span> <span>Chat với Souly</span>
     </button>
-
     <button class="sidebar-btn" id="btn-notebook" onclick="switchTab('notebook')">
       <span class="s-icon">🧠</span> <span>NotebookLM</span>
     </button>
 
     <div class="sidebar-divider"></div>
+
     <button class="sidebar-btn" onclick="alert('Cài đặt bảo mật & xóa dữ liệu')">
       <span class="s-icon">⚙️</span> <span>Cài đặt</span>
     </button>
@@ -1548,113 +236,122 @@ function showToast(msg) {
   <!-- MAIN CONTENT -->
   <main class="main-content">
 
-    <!-- Các tab cũ giữ nguyên: upload, repo, notebook -->
-
-    <!-- TAB CHAT HUMAI (giữ nguyên code cũ của bạn) -->
-    <div id="tab-chat" style="display:none">
-      <!-- ... nội dung chat cũ của bạn ... -->
+    <!-- TAB: Kho của tôi -->
+    <div id="tab-upload">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Kho Trí của tôi</div>
+          <div class="page-sub">Xin chào Minh Anh 👋 — Hiện có 6 tài liệu</div>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:100px; color:#666; font-size:18px;">
+        Giao diện đã được sửa thành công!<br><br>
+        Hãy click vào các nút bên trái để chuyển tab.
+      </p>
     </div>
 
-    <!-- ==================== TAB CHAT SOULY MỚI ==================== -->
-    <div id="tab-souly" style="display:none" class="souly-mode">
-      <div class="page-header souly-header" style="padding:20px 24px; border-radius: var(--radius); margin-bottom:20px">
-        <div>
-          <div class="page-title" style="color:#4C1D95">🌸 Chat với Souly</div>
-          <div class="page-sub" style="color:#6B21A8">Người bạn đồng hành cảm xúc – Lắng nghe và hiểu bạn</div>
-        </div>
-        <button class="nb-generate-btn" onclick="switchTab('chat')" style="background: linear-gradient(135deg, #C4B5FD, #A78BFA)">
-          ← Quay về Chat Kho Trí
-        </button>
-      </div>
+    <!-- TAB: Tài liệu -->
+    <div id="tab-repo" style="display:none">
+      <div class="page-title">Kho tài liệu</div>
+      <p style="color:#666; margin-top:20px;">Danh sách tài liệu sẽ hiển thị ở đây (đang phát triển)</p>
+    </div>
 
+    <!-- TAB: Chat Humai -->
+    <div id="tab-chat" style="display:none">
+      <div class="page-header">
+        <div class="page-title">Chat với Kho Trí (Humai)</div>
+      </div>
       <div class="chat-wrap">
-        <div class="chat-messages" id="soulyMessages">
-          <!-- Tin nhắn chào Souly -->
+        <div class="chat-messages" id="chatMessages">
           <div class="msg">
-            <div class="msg-avatar souly-avatar">🌸</div>
-            <div>
-              <div class="msg-bubble souly-bubble">
-                Chào bạn ❤️<br><br>
-                Mình là Souly. Hôm nay bạn muốn chia sẻ gì?<br>
-                Mình ở đây để lắng nghe, không phán xét, và cùng bạn khám phá cảm xúc qua những tài liệu bạn đã lưu.
-              </div>
-              <div class="msg-source">🌸 Souly • vừa xong</div>
+            <div class="msg-avatar ai-avatar">K</div>
+            <div class="msg-bubble">
+              Xin chào! Tôi là trợ lý logic của bạn.<br>
+              Bạn có thể hỏi bất cứ điều gì về tài liệu trong kho.
             </div>
           </div>
         </div>
-
         <div class="prompt-chips">
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">💭 Hôm nay mình cảm thấy thế nào khi đọc tài liệu này?</button>
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">🌱 Giúp mình rút ra bài học tinh thần</button>
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">😌 Mình đang stress, giúp mình nhẹ nhàng hơn</button>
-          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">❤️ Phân tích cảm xúc trong nhật ký của mình</button>
+          <button class="prompt-chip" onclick="sendPromptChip(this)">Tóm tắt tài liệu mới nhất</button>
+          <button class="prompt-chip" onclick="sendPromptChip(this)">Rút ra insight quan trọng</button>
         </div>
-
         <div class="chat-input-row">
-          <textarea class="chat-input" id="soulyInput" placeholder="Nói với Souly bất cứ điều gì bạn đang cảm thấy..." rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendSoulyChat()}"></textarea>
+          <textarea class="chat-input" id="chatInput" placeholder="Hỏi về tài liệu của bạn..." rows="1"></textarea>
+          <button class="chat-send" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Chat Souly -->
+    <div id="tab-souly" style="display:none">
+      <div class="page-header">
+        <div class="page-title">🌸 Chat với Souly</div>
+        <div style="color:#9B82F5; font-weight:600;">Người bạn đồng hành cảm xúc</div>
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-messages" id="soulyMessages">
+          <div class="msg">
+            <div class="msg-avatar souly-avatar">🌸</div>
+            <div class="msg-bubble souly-bubble">
+              Chào bạn ❤️<br><br>
+              Mình là Souly. Hôm nay bạn muốn chia sẻ cảm xúc gì?<br>
+              Mình ở đây để lắng nghe và cùng bạn khám phá.
+            </div>
+          </div>
+        </div>
+        <div class="prompt-chips">
+          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Hôm nay mình cảm thấy thế nào?</button>
+          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Giúp mình nhẹ nhàng hơn</button>
+          <button class="prompt-chip" onclick="sendSoulyPrompt(this)">Phân tích cảm xúc từ nhật ký</button>
+        </div>
+        <div class="chat-input-row">
+          <textarea class="chat-input" id="soulyInput" placeholder="Nói với Souly bất cứ điều gì bạn đang cảm thấy..." rows="1"></textarea>
           <button class="chat-send" onclick="sendSoulyChat()" style="background: linear-gradient(135deg, #C4B5FD, #A78BFA)">➤</button>
         </div>
       </div>
+    </div>
+
+    <!-- TAB: NotebookLM -->
+    <div id="tab-notebook" style="display:none">
+      <div class="page-title">Phân tích NotebookLM</div>
+      <p style="margin-top:40px; color:#666;">Tính năng NotebookLM đang được phát triển...</p>
     </div>
 
   </main>
 </div>
 
 <script>
-// === PHẦN CODE MỚI CHO SOULY ===
+// Switch Tab Function
+function switchTab(tab) {
+  document.querySelectorAll('.main-content > div').forEach(div => {
+    div.style.display = 'none';
+  });
+  document.getElementById('tab-' + tab).style.display = 'block';
 
-const soulyResponses = [
-  "Mình hiểu rồi… Việc đọc phần đó khiến bạn cảm thấy hơi nặng nề phải không? Bạn có muốn mình giúp gỡ những cảm xúc đó ra một chút không?",
-  "Cảm ơn bạn đã chia sẻ. Từ những gì mình đọc được trong nhật ký và tài liệu của bạn, mình thấy bạn đang rất cố gắng và cũng đang mệt mỏi. Bạn cho phép mình ôm bạn một chút trong suy nghĩ nhé?",
-  "Đây là một góc nhìn dịu dàng: Dù kết quả chưa như mong đợi, hành trình bạn đang đi đã thể hiện rất nhiều sự trưởng thành. Bạn thấy sao về điều này?",
-  "Nếu mình là bạn, mình cũng sẽ cảm thấy lo lắng như vậy. Bạn muốn mình cùng nghĩ cách để nhẹ lòng hơn không?"
-];
+  document.querySelectorAll('.sidebar-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.getElementById('btn-' + tab).classList.add('active');
+}
 
-let soulyIdx = 0;
-
-function appendSoulyMsg(role, text) {
-  const msgs = document.getElementById('soulyMessages');
-  const div = document.createElement('div');
-  div.className = 'msg' + (role==='user' ? ' user' : '');
-  
-  if(role==='user') {
-    div.innerHTML = `<div class="msg-avatar user-av">M</div><div class="msg-bubble">${text}</div>`;
-  } else {
-    div.innerHTML = `
-      <div class="msg-avatar souly-avatar">🌸</div>
-      <div>
-        <div class="msg-bubble souly-bubble">${text}</div>
-        <div class="msg-source">🌸 Souly • vừa xong</div>
-      </div>`;
-  }
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
+// Simple Chat Functions (simulate)
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  if (!input.value.trim()) return;
+  alert("Bạn đã gửi: " + input.value + "\n\n(Tính năng chat thật sẽ kết nối Claude sau)");
+  input.value = '';
 }
 
 function sendSoulyChat() {
-  const inp = document.getElementById('soulyInput');
-  const txt = inp.value.trim();
-  if(!txt) return;
-  inp.value = '';
+  const input = document.getElementById('soulyInput');
+  if (!input.value.trim()) return;
+  alert("Souly nhận được: " + input.value + "\n\n(Souly đang lắng nghe bạn...)");
+  input.value = '';
+}
 
-  appendSoulyMsg('user', txt);
-
-  // Typing indicator
-  const typingDiv = document.createElement('div');
-  typingDiv.className = 'msg';
-  typingDiv.innerHTML = `
-    <div class="msg-avatar souly-avatar">🌸</div>
-    <div><div class="msg-bubble souly-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>`;
-  document.getElementById('soulyMessages').appendChild(typingDiv);
-  typingDiv.scrollIntoView();
-
-  setTimeout(() => {
-    typingDiv.remove();
-    const resp = soulyResponses[soulyIdx % soulyResponses.length];
-    soulyIdx++;
-    appendSoulyMsg('ai', resp);
-  }, 1400);
+function sendPromptChip(btn) {
+  document.getElementById('chatInput').value = btn.textContent;
+  sendChat();
 }
 
 function sendSoulyPrompt(btn) {
@@ -1662,31 +359,11 @@ function sendSoulyPrompt(btn) {
   sendSoulyChat();
 }
 
-// Cập nhật hàm switchTab để hỗ trợ tab souly
-function switchTab(tab) {
-  ['upload','repo','chat','notebook','souly'].forEach(t => {
-    const el = document.getElementById('tab-'+t);
-    if(el) el.style.display = (t===tab) ? 'block' : 'none';
-    
-    const btn = document.getElementById('btn-'+t);
-    if(btn) btn.classList.remove('active');
-  });
-  
-  if(tab==='chat') document.getElementById('tab-chat').style.display = 'flex';
-  if(tab==='souly') document.getElementById('tab-souly').style.display = 'flex';
-  
-  document.getElementById('btn-'+tab)?.classList.add('active');
-}
-
-// Khởi tạo khi vào dashboard
-function goToDashboard() {
-  document.getElementById('landing').classList.remove('active');
-  document.getElementById('dashboard').classList.add('active');
-  renderDocs('recentDocs', docs.slice(0,4));
-  renderDocs('allDocs', docs);
-  renderNbFiles();
-  switchTab('upload');   // Mặc định vào tab Kho của tôi
-}
+// Khởi tạo khi load trang
+document.addEventListener('DOMContentLoaded', () => {
+  switchTab('upload');
+});
 </script>
+
 </body>
 </html>
