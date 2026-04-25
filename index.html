@@ -5,168 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KhoTrí AI – Kho tài liệu thông minh</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- DaisyUI CDN -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 
-    :root {
-      --mint: #A5F3E0;
-      --mint-dark: #6EDEC6;
-      --purple: #C7B4FF;
-      --purple-dark: #9B82F5;
-    }
-
     body {
       font-family: 'Quicksand', system-ui, sans-serif;
+      background: #f8fafc;
     }
 
     .logo-font {
       font-family: 'DM Serif Display', serif;
     }
 
-    .chat-bubble-ai {
-      background-color: #f3e8ff;
-      border-color: #c4b5fd;
+    /* Custom pastel theme */
+    .theme-pastel {
+      --primary: #6EDEC6;
+      --secondary: #C4B5FD;
+      --accent: #F9A8D4;
+      --neutral: #f3e8ff;
     }
 
-    .chat-bubble-souly {
-      background-color: #fdf4ff;
-      border: 2px solid #d8b4fe;
+    .sidebar-btn.active {
+      background-color: #ecfdf5 !important;
+      color: #0f766e !important;
+      border-left: 4px solid #6EDEC6;
+    }
+
+    .souly-chat {
+      background: linear-gradient(180deg, #fdf4ff 0%, #f3e8ff 100%);
     }
   </style>
 </head>
-<body class="bg-[#F7FDFB] min-h-screen">
+<body class="theme-pastel">
 
 <div class="flex h-screen">
 
   <!-- SIDEBAR -->
-  <div class="w-72 bg-white border-r border-base-200 flex flex-col shadow-sm">
-    <div class="p-6 border-b border-base-200">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-[#A5F3E0] to-[#C7B4FF] rounded-2xl flex items-center justify-center text-2xl">
-          📚
-        </div>
-        <div>
-          <span class="logo-font text-2xl font-bold text-gray-800">KhoTrí AI</span>
-        </div>
+  <div class="w-72 bg-white border-r border-base-200 shadow-sm flex flex-col">
+    <!-- Logo -->
+    <div class="p-6 border-b flex items-center gap-3">
+      <div class="w-11 h-11 bg-gradient-to-br from-[#A5F3E0] via-[#C4B5FD] to-[#F9A8D4] rounded-2xl flex items-center justify-center text-3xl shadow">
+        📚
       </div>
+      <div class="logo-font text-3xl font-bold tracking-tight text-gray-800">KhoTrí AI</div>
     </div>
 
-    <div class="flex-1 p-4 space-y-1 overflow-y-auto">
-      <button onclick="switchTab('upload')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl active" id="btn-upload">
-        <span class="text-xl">🏠</span>
+    <!-- Menu -->
+    <div class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+      <button onclick="switchTab('upload')" id="btn-upload" class="sidebar-btn w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left active">
+        <span class="text-2xl">🏠</span>
         <span class="font-medium">Kho của tôi</span>
       </button>
-      <button onclick="switchTab('repo')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-repo">
-        <span class="text-xl">📁</span>
+      <button onclick="switchTab('repo')" id="btn-repo" class="sidebar-btn w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left">
+        <span class="text-2xl">📁</span>
         <span class="font-medium">Tài liệu</span>
       </button>
-      <button onclick="switchTab('chat')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-chat">
-        <span class="text-xl">💬</span>
+      <button onclick="switchTab('chat')" id="btn-chat" class="sidebar-btn w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left">
+        <span class="text-2xl">💬</span>
         <span class="font-medium">Chat Kho Trí (Humai)</span>
       </button>
-      <button onclick="switchTab('souly')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-souly">
-        <span class="text-xl">🌸</span>
+      <button onclick="switchTab('souly')" id="btn-souly" class="sidebar-btn w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left">
+        <span class="text-2xl">🌸</span>
         <span class="font-medium">Chat với Souly</span>
       </button>
-      <button onclick="switchTab('notebook')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl" id="btn-notebook">
-        <span class="text-xl">🧠</span>
+      <button onclick="switchTab('notebook')" id="btn-notebook" class="sidebar-btn w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left">
+        <span class="text-2xl">🧠</span>
         <span class="font-medium">NotebookLM</span>
       </button>
     </div>
 
-    <div class="p-4 border-t border-base-200">
-      <div class="flex items-center gap-3 p-3 bg-base-100 rounded-2xl">
-        <div class="w-9 h-9 bg-gradient-to-br from-[#A5F3E0] to-[#C7B4FF] rounded-full flex items-center justify-center text-white font-bold">M</div>
+    <!-- User info -->
+    <div class="p-4 border-t">
+      <div class="flex items-center gap-3 bg-base-100 p-3 rounded-3xl">
+        <div class="w-9 h-9 bg-gradient-to-br from-[#A5F3E0] to-[#C4B5FD] rounded-2xl flex items-center justify-center text-white font-bold">M</div>
         <div>
-          <div class="font-semibold text-sm">Minh Anh</div>
+          <div class="font-semibold">Minh Anh</div>
           <div class="text-xs text-gray-500">Gói miễn phí</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="flex-1 flex flex-col overflow-hidden">
+  <!-- MAIN AREA -->
+  <div class="flex-1 flex flex-col">
 
-    <!-- Top Bar -->
-    <div class="h-14 border-b border-base-200 bg-white px-6 flex items-center justify-between">
-      <div class="text-lg font-medium" id="current-page">Kho của tôi</div>
-      <div class="flex gap-2">
-        <button class="btn btn-sm btn-ghost">Hỗ trợ</button>
-        <button class="btn btn-sm btn-primary">Nâng cấp</button>
+    <!-- Top bar -->
+    <div class="h-14 border-b bg-white px-8 flex items-center justify-between">
+      <div class="text-xl font-medium" id="page-title">Kho của tôi</div>
+      <div class="flex gap-3">
+        <button class="btn btn-ghost btn-sm">Hỗ trợ</button>
+        <button class="btn btn-primary btn-sm">Nâng cấp</button>
       </div>
     </div>
 
-    <!-- Content Area -->
-    <div class="flex-1 p-8 overflow-y-auto" id="main-content">
+    <!-- Content -->
+    <div class="flex-1 p-8 overflow-auto" id="main-content">
 
-      <!-- TAB: Kho của tôi -->
-      <div id="tab-upload" class="tab-content">
-        <h1 class="text-3xl font-bold mb-2">Chào mừng trở lại, Minh Anh 👋</h1>
-        <p class="text-gray-600 mb-8">Kho Trí của bạn đang có <span class="font-semibold text-[#6EDEC6]">6 tài liệu</span></p>
+      <!-- Tab Kho của tôi -->
+      <div id="tab-upload">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Chào Minh Anh 👋</h1>
+        <p class="text-gray-600 text-lg">Kho Trí của bạn hôm nay có <span class="font-semibold text-emerald-600">6 tài liệu</span></p>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="card bg-white shadow-sm border border-base-200 hover:shadow-md transition-all">
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card bg-white shadow hover:shadow-md transition-all border border-base-200">
             <div class="card-body">
-              <p class="text-4xl">📄</p>
-              <h3 class="font-semibold mt-4">Luận văn tốt nghiệp</h3>
-              <p class="text-sm text-gray-500">22/04/2025 • 4.2 MB</p>
+              <div class="text-5xl mb-4">📄</div>
+              <h3 class="font-semibold text-lg">Luận văn tốt nghiệp 2024</h3>
+              <p class="text-sm text-gray-500">22/04/2025 • PDF</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- TAB: Chat Humai -->
-      <div id="tab-chat" class="tab-content hidden">
-        <h1 class="text-3xl font-bold mb-6">Chat với Kho Trí (Humai)</h1>
-        <div class="chat-container bg-white rounded-3xl shadow-sm border border-base-200 h-[calc(100vh-180px)] flex flex-col">
-          <div class="flex-1 p-6 overflow-y-auto" id="chatMessages">
-            <!-- Messages sẽ được thêm bằng JS -->
-          </div>
-          <div class="p-4 border-t">
-            <div class="flex gap-2">
-              <input type="text" id="chatInput" placeholder="Hỏi bất cứ điều gì về tài liệu của bạn..." 
-                     class="input input-bordered flex-1 rounded-2xl" onkeypress="if(event.key==='Enter') sendChat()">
-              <button onclick="sendChat()" class="btn btn-primary rounded-2xl">Gửi</button>
+      <!-- Tab Chat Souly -->
+      <div id="tab-souly" class="hidden souly-chat h-full rounded-3xl p-8">
+        <div class="max-w-3xl mx-auto">
+          <h1 class="text-3xl font-bold flex items-center gap-3 mb-8">
+            <span class="text-4xl">🌸</span> 
+            Chat với Souly
+          </h1>
+          
+          <div class="bg-white rounded-3xl shadow-sm p-6 min-h-[500px] mb-6" id="soulyMessages">
+            <div class="chat chat-start">
+              <div class="chat-bubble chat-bubble-souly text-base">
+                Chào bạn ❤️<br><br>
+                Mình là Souly. Hôm nay bạn muốn chia sẻ cảm xúc gì?<br>
+                Mình luôn ở đây để lắng nghe một cách dịu dàng.
+              </div>
             </div>
+          </div>
+
+          <div class="flex gap-3">
+            <input id="soulyInput" type="text" placeholder="Nói với Souly về những gì bạn đang cảm thấy..." 
+                   class="input input-bordered flex-1 rounded-2xl py-6 text-base" 
+                   onkeypress="if(event.key === 'Enter') sendSoulyChat()">
+            <button onclick="sendSoulyChat()" 
+                    class="btn btn-lg px-10 rounded-2xl" 
+                    style="background: #d8b4fe; color: #4c1d95; border: none;">
+              Gửi
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- TAB: Chat Souly -->
-      <div id="tab-souly" class="tab-content hidden">
-        <h1 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <span>🌸</span> Chat với Souly
-        </h1>
-        <div class="chat-container bg-gradient-to-b from-[#fdf4ff] to-white rounded-3xl shadow-sm border border-[#d8b4fe] h-[calc(100vh-180px)] flex flex-col">
-          <div class="flex-1 p-6 overflow-y-auto" id="soulyMessages">
-            <!-- Souly welcome message -->
-          </div>
-          <div class="p-4 border-t bg-white rounded-b-3xl">
-            <div class="flex gap-2">
-              <input type="text" id="soulyInput" placeholder="Nói với Souly về cảm xúc của bạn..." 
-                     class="input input-bordered flex-1 rounded-2xl" onkeypress="if(event.key==='Enter') sendSoulyChat()">
-              <button onclick="sendSoulyChat()" class="btn btn-secondary rounded-2xl" style="background:#d8b4fe; border:none; color:#4c1d95">Gửi</button>
-            </div>
-          </div>
-        </div>
+      <!-- Các tab khác (tạm) -->
+      <div id="tab-chat" class="hidden">
+        <h1 class="text-3xl font-bold">Chat Kho Trí (Humai)</h1>
+        <p class="mt-4 text-gray-500">Tính năng đang được hoàn thiện...</p>
       </div>
-
-      <!-- Các tab khác -->
-      <div id="tab-repo" class="tab-content hidden">
+      <div id="tab-repo" class="hidden">
         <h1 class="text-3xl font-bold">Tài liệu</h1>
-        <p class="mt-4 text-gray-600">Danh sách tất cả tài liệu sẽ hiển thị ở đây.</p>
       </div>
-
-      <div id="tab-notebook" class="tab-content hidden">
-        <h1 class="text-3xl font-bold">NotebookLM Analysis</h1>
-        <p class="mt-4 text-gray-600">Tính năng phân tích sâu đang được phát triển.</p>
+      <div id="tab-notebook" class="hidden">
+        <h1 class="text-3xl font-bold">NotebookLM</h1>
       </div>
 
     </div>
@@ -174,55 +168,51 @@
 </div>
 
 <script>
-// Tailwind script đã được load qua CDN
-
 function switchTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('#main-content > div').forEach(div => {
+    div.classList.add('hidden');
+  });
   document.getElementById('tab-' + tab).classList.remove('hidden');
-  
+
   document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
   document.getElementById('btn-' + tab).classList.add('active');
 
-  document.getElementById('current-page').textContent = 
+  document.getElementById('page-title').textContent = 
     tab === 'upload' ? 'Kho của tôi' :
     tab === 'repo' ? 'Tài liệu' :
-    tab === 'chat' ? 'Chat Kho Trí' :
+    tab === 'chat' ? 'Chat Kho Trí (Humai)' :
     tab === 'souly' ? 'Chat với Souly' : 'NotebookLM';
-}
-
-// Chat simulate
-function sendChat() {
-  const input = document.getElementById('chatInput');
-  if (!input.value.trim()) return;
-  alert(`Humai nhận được: "${input.value}"\n\n(Đang simulate - sau này sẽ kết nối Claude)`);
-  input.value = '';
 }
 
 function sendSoulyChat() {
   const input = document.getElementById('soulyInput');
   if (!input.value.trim()) return;
-  alert(`Souly nhận được: "${input.value}"\n\n🌸 Souly đang lắng nghe và đồng hành cùng bạn...`);
+  
+  const messages = document.getElementById('soulyMessages');
+  messages.innerHTML += `
+    <div class="chat chat-end mb-4">
+      <div class="chat-bubble bg-emerald-100">${input.value}</div>
+    </div>
+  `;
+  
+  setTimeout(() => {
+    messages.innerHTML += `
+      <div class="chat chat-start">
+        <div class="chat-bubble chat-bubble-souly">
+          Cảm ơn bạn đã chia sẻ. Mình hiểu rằng bạn đang cảm thấy...
+        </div>
+      </div>
+    `;
+    messages.scrollTop = messages.scrollHeight;
+  }, 800);
+
   input.value = '';
 }
 
 // Khởi tạo
 document.addEventListener('DOMContentLoaded', () => {
   switchTab('upload');
-  
-  // Thêm welcome message cho Souly
-  const soulyMsg = document.getElementById('soulyMessages');
-  if (soulyMsg) {
-    soulyMsg.innerHTML = `
-      <div class="chat chat-start">
-        <div class="chat-bubble chat-bubble-souly">
-          Chào bạn ❤️<br><br>
-          Mình là Souly. Hôm nay bạn muốn chia sẻ cảm xúc gì với mình?
-        </div>
-      </div>
-    `;
-  }
 });
 </script>
-
 </body>
 </html>
